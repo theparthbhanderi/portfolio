@@ -418,29 +418,42 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <form action="https://formspree.io/f/xblkzkqv"
-                             method="POST">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name" class="floating-label">Your Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email" class="floating-label">Your Email</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
-                            <label for="subject" class="floating-label">Subject</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <label for="message" class="floating-label">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
-                    </form>
+                    <form class="contact-form glass-card" action="https://formspree.io/f/xblkzkqv" method="POST" id="contact-form">
+    <div class="form-group">
+        <input type="text" id="name" name="name" required>
+        <label for="name" class="floating-label">Your Name</label>
+    </div>
+    <div class="form-group">
+        <input type="email" id="email" name="email" required>
+        <label for="email" class="floating-label">Your Email</label>
+    </div>
+    <div class="form-group">
+        <input type="text" id="subject" name="subject" required>
+        <label for="subject" class="floating-label">Subject</label>
+    </div>
+    <div class="form-group">
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message" class="floating-label">Your Message</label>
+    </div>
+
+    <!-- Optional: Redirect after submission -->
+    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+
+    <button type="submit" class="btn btn-primary submit-btn">
+        <i class="fas fa-paper-plane"></i>
+        Send Message
+    </button>
+</form>
+
+<!-- JavaScript: Success Alert -->
+<script>
+  const form = document.getElementById("contact-form");
+  form.addEventListener("submit", function (event) {
+    setTimeout(() => {
+      alert("✅ Message Sent! Thank you for contacting us.");
+    }, 100);
+  });
+</script>
                 </div>
             </div>
         </div>
