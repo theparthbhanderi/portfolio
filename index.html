@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -418,34 +418,29 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <!-- Contact Form -->
-<form action="https://formspree.io/f/xblkzkqv" method="POST" id="contact-form">
-  <label>
-    Your Email:
-    <input type="email" name="email" placeholder="Enter your email" required>
-  </label>
-  <br><br>
-  <label>
-    Your Message:
-    <textarea name="message" placeholder="Type your message here..." required></textarea>
-  </label>
-  <br><br>
-
-  <!-- Optional: Redirect after submission -->
-  <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-
-  <button type="submit">Send</button>
-</form>
-
-<!-- Success Alert Script -->
-<script>
-  const form = document.getElementById("contact-form");
-  form.addEventListener("submit", function (event) {
-    setTimeout(() => {
-      alert("✅ Message Sent! Thank you for contacting us.");
-    }, 100); // Alert will show after slight delay post submission
-  });
-</script>
+                    <form action="https://formspree.io/f/xblkzkqv"
+                             method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name" class="floating-label">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email" class="floating-label">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject" class="floating-label">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message" class="floating-label">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
