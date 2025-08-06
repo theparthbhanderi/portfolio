@@ -247,46 +247,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact form handling
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
             // Get form data
             const formData = new FormData(this);
             const name = formData.get('name');
             const email = formData.get('email');
             const subject = formData.get('subject');
             const message = formData.get('message');
-            
+
             // Simple validation
             if (!name || !email || !subject || !message) {
                 showNotification('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully.', 'success');
-                this.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                
-                // Reset floating labels
-                document.querySelectorAll('.floating-label').forEach(label => {
-                    label.style.top = '1rem';
-                    label.style.fontSize = '1rem';
-                    label.style.color = '#b0b0b0';
+                return;
+            }
+            if (!isValidEmail(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            // AJAX submit to Formspree
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
-            }, 2000);
+                if (response.ok) {
+                    showNotification('Thank you! Your message has been sent successfully.', 'success');
+                    this.reset();
+                    // Reset floating labels
+                    document.querySelectorAll('.floating-label').forEach(label => {
+                        label.style.top = '1rem';
+                        label.style.fontSize = '1rem';
+                        label.style.color = '#b0b0b0';
+                    });
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        showNotification(data.errors.map(error => error.message).join(', '), 'error');
+                    } else {
+                        showNotification('Oops! There was a problem submitting your form', 'error');
+                    }
+                }
+            } catch (error) {
+                showNotification('Oops! There was a problem submitting your form', 'error');
+            }
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         });
     }
     
