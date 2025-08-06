@@ -2002,4 +2002,125 @@ section {
 
 /* Removed heavy floating animation */
 
+/* Footer Glassmorphism Styles */
+.glass-footer {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.04);
+  padding: 20px 0;
+  position: relative;
+  z-index: 10;
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Poppins', 'Inter', 'Roboto', Arial, sans-serif;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  gap: 8px;
+}
+.footer-social {
+  margin-bottom: 8px;
+}
+.footer-icon {
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  margin: 0 8px;
+  transition: color 0.2s;
+  vertical-align: middle;
+}
+.footer-icon:hover {
+  color: #007bff;
+}
+.footer-legal, .footer-crafted {
+  margin: 2px 0;
+}
+.footer-emoji {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+.back-to-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 2px 10px;
+  background: rgba(255,255,255,0.04);
+  transition: background 0.2s, color 0.2s;
+}
+.back-to-top:hover {
+  background: rgba(0,123,255,0.12);
+  color: #007bff;
+}
+@media (max-width: 600px) {
+  .footer-content {
+    font-size: 13px;
+    gap: 6px;
+  }
+  .footer-icon {
+    font-size: 18px;
+    margin: 0 6px;
+  }
+  .back-to-top {
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+}
+
+/* Fixed Back to Top Button (above footer, right side) */
+.back-to-top-fixed {
+  position: fixed;
+  right: 32px;
+  bottom: 90px;
+  z-index: 100;
+  display: inline-block;
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-family: 'Poppins', 'Inter', 'Roboto', Arial, sans-serif;
+}
+.back-to-top-fixed:hover {
+  background: rgba(0,123,255,0.15);
+  color: #007bff;
+  box-shadow: 0 4px 24px 0 rgba(0,123,255,0.10);
+}
+@media (max-width: 600px) {
+  .back-to-top-fixed {
+    right: 12px;
+    bottom: 80px;
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+}
+/* Remove old .back-to-top style if not needed */
+.back-to-top {
+  display: none !important;
+}
+
+/* Light mode: ensure back-to-top button is visible */
+[data-theme="light"] .back-to-top-fixed {
+  color: rgba(30,30,30,0.85);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+}
+[data-theme="light"] .back-to-top-fixed:hover {
+  background: rgba(0,123,255,0.10);
+  color: #007bff;
+}
+
 
